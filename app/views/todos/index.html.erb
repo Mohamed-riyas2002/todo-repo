@@ -1,0 +1,49 @@
+<h2 style='text-align: center'>Todo Management App</h2>
+<div class= "form_div">
+    <form action='/todos/create' method='post'>
+        <table>
+            <input type='hidden'  name="authenticity_token" value=<%= form_authenticity_token%>>
+            <tr>
+            <td><label for='task'>Enter your task :</label></td>
+            <td><input type='text' id='task' name='todo[task]' required></td>
+            </tr>
+            <tr>
+            <td><label for='date'>Date :</label></td>
+            <td><input type='date' name='todo[date]' id='date' required></td>
+            </tr>
+            <tr>
+            <td></td>
+            <td><button type='submit'>ADD TASK</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div class='show_list'>
+<table class="table table-hover">
+<thead>
+<% if @todo.empty? %>
+    <p style="text-align: center">please add some task</p>
+<%else%>
+    <th>Task</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Delete</th>
+<% end %>
+<tr>
+</thead>
+<% for todo in 0...@todo.length do %>
+    <tbody>
+        <tr>
+            <td><%= @todo[todo].task.capitalize %></td>
+            <td><%= @todo[todo].date %></td>
+            <% if @todo[todo].status == false || @todo[todo].status == 'null' %>
+                <td><a href="/todos/update/<%= @todo[todo].id%>"><button>Mark as complete</button></a></td>
+            <% else %>
+                <td>Completed</td>
+            <% end %>
+            <td><b><%= link_to "Delete", "/todos/delete/#{@todo[todo].id}" , data: {confirm: "Are you sure ?"}%></b></td>
+        </tr>
+        </tbody>
+<% end %>
+</table>
+</div>

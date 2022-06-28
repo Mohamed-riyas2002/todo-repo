@@ -1,0 +1,14 @@
+<h1>REGISTER</h1>
+<form action="users/create" method="post">
+    <input type ="hidden" name="authenticity_token" value=<%= form_authenticity_token%>>
+    <input type="text" name="user[name]" placeholder="Enter your first name" required><br>
+    <br>
+    <input type="tel" pattern ="[0-9]{10}" name="user[phone_number]" placeholder="Enter your phone NO" required><br>
+    <br>
+    <input type="email" name="user[email]" placeholder="Type your email" required><br>
+    <br>
+    <input type ='password' name="user[password]" placeholder="Enter your password" required><br>
+    <br>
+    <button type="submit">REGISTER</button>
+    <br>
+</form>
